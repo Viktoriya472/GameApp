@@ -1,0 +1,30 @@
+{% extends "flatpages/default.html" %}
+{% load static %}
+{% block title %}Объявление{% endblock title %}
+{% block content %}
+<section class="page-section community-page set-bg" data-setbg="{% static "img/community-bg.jpg" %}">
+    <div class="community-warp spad">
+        <div class="container">
+            <ul class="community-post-list">
+                <li>
+                    <div class="community-post">
+                        <div class="mb-4 text-end">                          
+                            {% if user == ad.user %}
+                                <a class="btn btn-outline-warning btn-sm" href="{% url 'ads_update' ad.id %}">Редактировать</a>
+                                <a class="btn btn-outline-warning btn-sm" href="{% url 'ads_delete' ad.id %}">Удалить</a>
+                            {% endif %}
+                        </div>
+                        <div class="author-avator set-bg" data-setbg="{{ad.user.profile.avatar.url}}"></div>
+                            <div class="post-content">
+                                <h5>{{ ad.user }}</h5>
+                                <div class="post-date">{{ ad.datetime }}</div>
+                                <h4>{{ ad.title }}</h4>
+                                <div><p>{{ ad.content_upload|safe}}</p></div> 
+                            </div>  
+                    </div>
+                </li>
+            </ul>  
+        </div>
+    </div>
+</section>
+{% endblock content %}
