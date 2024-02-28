@@ -1,7 +1,25 @@
 {% extends 'flatpages/default.html' %}
-{% block title%}{%endblock title%}
+{% block title%}Новость{%endblock title%}
 {% block content %}
-    <h3>{{news.header}}</h3>
-    <p>{{news.text}}</p> 
-    <img src="{{news.image.url}}" alt="">
+<section class="page-section single-blog-page spad">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="d-flex text-secondary pb-2">
+                    {% for news_category in news.category.all %}
+                        <a href="#" class="text-decoration-none pr-3" style="color:#ff205f">{{ news_category }}</a>
+                    {% endfor %}
+                    <span>{{ news.datetime }}</span> 
+                </div>
+                
+                <div class="blog-thumb set-bg" data-setbg="{{news.image.url}}">
+                </div>
+                <div class="blog-content">
+                    <h3>{{ news.header }}</h3>
+                    <p class="text-black">{{ news.text }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %} 
