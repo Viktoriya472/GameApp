@@ -48,6 +48,15 @@ class AsdCreate(CreateView):
     form_class = AdForm
     success_url = reverse_lazy("ads")
 
+    def post(self, request, *args, **kwargs):
+        form = AdForm(request.POST)
+        if form.is_valid():
+            form.instance.user=User.objects.get(username=request.user)
+            form.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
 
 class AdsUpdate(UpdateView):
     model=Ad

@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Выход" %}{% endblock head_title %}
+{% block content %}
+<div class="container">
+    <div class="card-body py-5 px-md-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-5 text-center">{% trans "Вы действительно хотите выйти?" %}</h2>
+                <form  method="post">
+                {% csrf_token %}
+                    <div class="text-center">
+                        <button class="btn btn-outline-dark px-4 mb-2" type="submit">Выйти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
