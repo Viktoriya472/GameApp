@@ -1,0 +1,39 @@
+{% extends "flatpages/default.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Профиль{% endblock title %}
+{% block content %}
+<section class="page-section recent-game-page spad">
+    <div class="container">
+        <div class="d-flex justify-content-md-center p-3">
+            <div class="p-3 " style="background:#252525" >
+                <div class="d-flex justify-content-center align-items-center flex-wrap">        
+                    <div class="d-flex justify-content-center align-items-center p-3">
+                        <img class="rounded-circle" src="{{user.profile.avatar.url}}" alt="">
+                    </div>
+                    <div class="d=flex justify-content-center align-items-center p-3">
+                        <fieldset disabled>
+                        <div class="mb-3">
+                            <label for="nick" class="form-label requiredField text-white">Никнейм </label> 
+                            <input type="text" value="{{user.username}}" class="textinput form-control" required="" id="id_nick">
+                        </div>
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label requiredField text-white">Имя</label> 
+                            <input type="text" value="{{user.first_name}}" class="textinput form-control" required="" id="first_name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label requiredField text-white">Фамилия</label> 
+                            <input type="text" value="{{user.last_name}}" class="textinput form-control" required="" id="last_name">
+                        </div>
+                        </fieldset>
+                    </div>
+                </div>
+                    <div class="d-flex justify-content-center align-items pb-4">
+                        <a class="btn btn-outline-warning btn-sm" href="{% url 'profile_update' profile.id %}">Изменить</a>
+                    </div>
+           </div>
+        </div>    
+    </div>
+</section>
+{% endblock content %}

@@ -28,7 +28,7 @@ class Ad(models.Model):
         
 
 class Comment(models.Model):
-    text = models.TextField("Текст")
+    text = models.TextField("")
     datetime = models.DateTimeField("Дата и время",auto_now_add=True)
     active = models.BooleanField("Видимость комментария",default=False)
     ad = models.ForeignKey(Ad,on_delete=models.CASCADE,verbose_name="Объявление")

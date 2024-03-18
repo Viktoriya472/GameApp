@@ -5,12 +5,11 @@
 <section class="page-section community-page set-bg" data-setbg="{% static "img/community-bg.jpg" %}">
     <div class="community-warp spad">
         <div class="container">
-            <div class="btn-ad d-md-flex justify-content-md-end pb-4">
+            <div class="d-md-flex justify-content-md-end pb-4">
                 {% if user.is_authenticated %}
                    <button class="site-btn"><a href="{% url 'ad_create' %}" target="_blank">Добавить объявление</a></button>
                 {% endif %}
             </div>
-
             <ul class="community-post-list">
             {% for ad in ads %}
                 <li>
@@ -21,7 +20,7 @@
                                 <h5>{{ ad.user }}</h5>
                                 <div class="post-date">{{ ad.datetime }}</div>
                                 <h4>{{ ad.title }}</h4>
-                                <div><p>{{ ad.content_upload|truncatewords:20|safe}}</p></div>
+                                <div>{{ ad.content_upload|truncatewords:20|safe}}</div>
                             </a>
                         </div>   
                 </div>

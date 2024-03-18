@@ -78,7 +78,7 @@ class Comments(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(ad=Ad.objects.get(user=self.request.user),active=False)
+        context['comments'] = Comment.objects.filter(ad__user=self.request.user,active=False)
         return context
     
 

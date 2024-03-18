@@ -15,6 +15,7 @@ class News(models.Model):
     
     def __str__(self):
         return f'{self.header}'
+    
 
 
 class Category(models.Model):

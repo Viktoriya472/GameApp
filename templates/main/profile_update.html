@@ -1,0 +1,47 @@
+{% extends "flatpages/default.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Редактировать профиль{% endblock title %}
+{% block content %}
+<section class="page-section recent-game-page spad">
+    <div class="container">
+        <div class="d-flex justify-content-md-center">
+            <div style="background:#252525">
+                <div class="d-flex justify-content-center p-4">
+                    <form method="POST" enctype="multipart/form-data">
+                         {% csrf_token %}
+                         <div class="profile_update_form">
+                            {{user_form|crispy}}
+                            {{profile_form|crispy}}
+                            <div class="text-center">
+                                <button class="btn btn-outline-warning btn-sm">Сохранить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+{% endblock content %}
+
+<div class="text-white">
+                         
+
+
+
+                         
+
+    <div id="div_id_avatar" class="mb-3"> <label for="id_avatar" class="form-label">
+                    Аватар
+                </label> <div class="input-group mb-2"> <span class="input-group-text">На данный момент</span> <div class="form-control d-flex h-auto"> <span class="text-break flex-grow-1"> <a href="/media/profile_images/2_cbDCXul.jpg">profile_images/2_cbDCXul.jpg</a> </span> <span class="align-self-center ml-2"> <span class="form-check"> <input type="checkbox" name="avatar-clear" id="avatar-clear_id" class="form-check-input"> <label class="form-check-label mb-0" for="avatar-clear_id">Очистить</label> </span> </span> </div>
+    </div>
+    
+    <div> <input type="file" name="avatar" class="form-control" accept="image/*" id="id_avatar"> </div> </div> <div id="div_id_first_name" class="mb-3"> <label for="id_first_name" class="form-label requiredField">
+                    Имя<span class="asteriskField">*</span> </label> <input type="text" name="first_name" value="Boby" class="text-white textinput form-control" maxlength="30" required="" id="id_first_name"> </div> <div id="div_id_last_name" class="mb-3"> <label for="id_last_name" class="form-label requiredField">
+                    Фамилия<span class="asteriskField">*</span> </label> <input type="text" name="last_name" value="L" class="text-white textinput form-control" maxlength="30" required="" id="id_last_name"> </div>
+    
+                             <div class="text-center">
+                                <button class="btn btn-outline-warning btn-sm">Изменить</button>
+                            </div></div>

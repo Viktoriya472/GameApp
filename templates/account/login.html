@@ -12,6 +12,22 @@
 
                 <form method="post"> 
                     {% csrf_token %}
+                    
+                        {% if form.errors %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-error text-center">
+                                        <div>{{ error|escape }}</divg>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-error text-center">
+                                    <div>{{ error|escape }}</div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    
                     <div class="form-outline mb-4">
                         <label class="form-label" for="id_login">E-mail:</label>
                         <input class="form-control" id="id_login" type="email" name="login" placeholder="E-mail адрес" autocomplete="email" required id = "id_login">
