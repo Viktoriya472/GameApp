@@ -1,16 +1,14 @@
 from typing import Any
-from django.views.generic import DetailView, UpdateView
-from main.models import Profile
+from django.views.generic import DetailView, UpdateView,CreateView
+from main.models import Profile,Contact
 from django.shortcuts import get_object_or_404
-from main.forms import ProfileForm
+from main.forms import ProfileForm,ContactForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-
-
-
+from django.db import IntegrityError
+from .tasks import newsletter_subscription, newsletter_subscription_error
 
 class ProfileView(DetailView):
     model = Profile
@@ -38,3 +36,18 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
         user.save()
         profile.save()
         return HttpResponseRedirect(reverse('profile',kwargs={'pk':self.get_object().pk}))
+
+
+class ContactView(CreateView):
+    model = Contact
+    form_class = ContactForm
+    
+    def form_valid(self, form):
+        contact=form.save(commit=False)
+        try:
+            if contact.email not in Contact.objects.all():
+                contact.save()
+                newsletter_subscription(contact.email)
+        except: 
+            newsletter_subscription_error(contact.email)
+        return HttpResponseRedirect(reverse('news'))

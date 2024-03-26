@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from main.models import Profile
+from main.models import Profile, Contact
 from django.contrib.auth.models import User
 from django import forms
 
@@ -9,3 +9,12 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['avatar']
+
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact 
+        fields = ['email']
+        widgets = {
+            'email': forms.EmailInput(attrs={"class":"form-control bg-transparent text-white w-100 py-3 ps-4 pe-5","placeholder": "Ваш email.."})
+        }   

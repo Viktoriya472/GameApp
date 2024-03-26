@@ -1,0 +1,5 @@
+<form action="{% url 'contact' %}" method="POST">
+    {% csrf_token %}
+    {{ contact_form }}
+    <button class="btn btn-secondary btn-sm py-2 position-absolute top-0 end-0">Подписаться</button>
+</form>
