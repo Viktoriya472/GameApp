@@ -174,7 +174,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -216,6 +216,8 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" 
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # celery, celery-beat  https://docs.celeryq.dev/en/stable/getting-started/first-steps-with-celery.html#redis
 CELERY_BROKER_URL = 'redis://localhost:6379' 
