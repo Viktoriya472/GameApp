@@ -1,7 +1,7 @@
 from celery import shared_task
 from django.core.mail import send_mail
 from main.mailing import message_list_news, contact_list
-from gameApp.settings import EMAIL_HOST_USER
+from gameApp.settings.base import EMAIL_HOST_USER
 
 @shared_task
 def newsletter_subscription_error(email):
