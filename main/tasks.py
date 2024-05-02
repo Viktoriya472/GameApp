@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from main.mailing import message_list_news, contact_list
 from gameApp.settings.base import EMAIL_HOST_USER
 
+
 @shared_task
 def newsletter_subscription_error(email):
     send_mail(
@@ -12,6 +13,7 @@ def newsletter_subscription_error(email):
         [email],
         fail_silently=False
     )
+
 
 @shared_task
 def newsletter_subscription(email):
@@ -23,13 +25,14 @@ def newsletter_subscription(email):
         fail_silently=False
     )
 
+
 @shared_task
 def send_newsletter():
-        send_mail(
-            'Новостная рассылка',
-            'Новости: ',
-            EMAIL_HOST_USER,
-            contact_list,
-            html_message= message_list_news,
-            fail_silently=False
+    send_mail(
+        'Новостная рассылка',
+        'Новости: ',
+        EMAIL_HOST_USER,
+        contact_list,
+        html_message=message_list_news,
+        fail_silently=False
     )
