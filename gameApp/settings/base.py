@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    "django.contrib.postgres",
     'news.apps.NewsConfig',
     'main.apps.MainConfig',
     'ads.apps.AdsConfig',

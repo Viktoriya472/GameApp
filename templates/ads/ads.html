@@ -3,7 +3,7 @@
 {% block title %}Форум{% endblock title %}
 {% block content %}
 <!-- Page info section -->
-<section class="page-info-section set-bg" data-setbg="{% static 'img/page-top-bg/3.jpg' %}">
+<section class="page-info-section set-bg" data-setbg="{% static 'img/page-top-bg/7.jpg' %}">
     <div class="pi-content">
         <div class="container">
             <div class="row">
@@ -17,49 +17,59 @@
 </section>
 <!-- Page info section -->
 
-<section class="page-section community-page set-bg" data-setbg="{% static "img/community-bg.jpg" %}">
+<section class="page-section community-page set-bg" data-setbg="{% static "img/pict.jpg" %}">
     <div class="community-warp spad">
         <div class="container">
             <div class="d-md-flex justify-content-md-end pb-4">
                 {% if user.is_authenticated %}
-                   <button class="site-btn"><a href="{% url 'ad_create' %}" target="_blank">Добавить объявление</a></button>
+                   <button class="site-btn"><a href="{% url 'ad_create' %}">Добавить объявление</a></button>
                 {% endif %}
             </div>
+            <!-- widget -->
+                <div class="widget-item">
+                    <form action="{% url 'ad_search' %}" method="get" class="search-widget">
+                        <input type="text" type="search" placeholder="Поиск" name="q">
+                        <button><i class="fa fa-search" type="submit"></i></button>
+                    </form>
+                </div>
+            <!-- widget -->
             <ul class="community-post-list">
             {% for ad in ads %}
                 <li>
-                <div class="community-post">
-                    <div class="author-avator set-bg" data-setbg="{{ad.user.profile.avatar.url}}"></div>
-                        <div class="post-content">
-                            <a class="ad_detail" href="{% url 'ad_detail' ad.id %}">
-                                <h5>{{ ad.user }}</h5>
-                                <div class="post-date">{{ ad.datetime }}</div>
-                                <h4>{{ ad.title }}</h4>
-                                <div>{{ ad.content_upload|truncatewords:20|safe}}</div>
-                            </a>
-                        </div>   
-                </div>
+                    <a class="ad_detail" href="{% url 'ad_detail' ad.id %}">
+                        <div class="community-post">
+                            <div class="author-avator set-bg" data-setbg="{{ad.user.profile.avatar.url}}"></div>
+                                <div class="post-content">
+                                    <h5>{{ ad.user }}<span>{{ad.game}}<span/></h5>
+                                    <div class="post-date">{{ ad.datetime }}</div>
+                                    <h4>{{ ad.title }}</h4>
+                                    <div>{{ ad.content_upload|truncatewords:20|safe}}</div>
+                                </div>   
+                        </div>
+                    </a>
                 </li>
             {% endfor %}
             </ul>
-            <div class="site-pagination sp-style-2">
-                {% if page_obj.has_previous %}
-                <a class="link" href="?page=1">1</a>
-                <a href="?page={{ page_obj.previous_page_number }}"><</a>
-                {% endif %}
-                {% for num in page_obj.paginator.page_range %}
-                    {% if page_obj.number == num %}
-                        <a>{{ num }}</a>
-                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                    <a href="?page={{ num }}">{{ num }}</a>
+            <!-- Pagination -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link link-dark" tabindex="-1" href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
                     {% endif %}
-                {% endfor %}
-            
-                {% if page_obj.has_next %}
-                    <a href="?page={{  page_obj.next_page_number }}">></a>
-                    <a class="link link-end" href="?page={{  page_obj.paginator.num_pages }}">{{  page_obj.paginator.num_pages }}</a>
-                {% endif %}
-            </div>
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item"><a class="page-link link-warning">{{ num }}</a></li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item"><a class="page-link link-dark" href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link link-dark" href="?page={{  page_obj.next_page_number }}"><span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span></a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <!-- End pagination -->
         </div>
     </div>
 </section>

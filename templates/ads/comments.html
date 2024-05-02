@@ -2,6 +2,20 @@
 {% load static %}
 {% block title %}Комментарии{% endblock title %}
 {% block content %}
+<!-- Page info section -->
+<section class="page-info-section set-bg" data-setbg="{% static 'img/page-top-bg/8.jpg' %}">
+    <div class="pi-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-6 text-white">
+                    <h2>Комментарии</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page info section -->
 <section class="page-section community-page set-bg" data-setbg="{% static 'img/pict.jpg' %}">
 <div class="community-warp spad">
 <div class="container min-vh-100 d-flex flex-column">
@@ -25,7 +39,7 @@
 </div>
 </section>
 {% endblock %}
-{% block js %}
+{% block javascript %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
     $('body').on('click','.update_active', function(event){
@@ -46,4 +60,4 @@
         }    
     })
     </script>
-{% endblock js %}
+{% endblock javascript %}

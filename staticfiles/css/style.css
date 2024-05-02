@@ -1260,7 +1260,7 @@ text-decoration: none;
 .community-warp {
 	max-width: 1367px;
 	margin: 0 auto;
-	background: rgba(0, 0, 0, 0.28);
+	/* background: rgba(0, 0, 0, 0.28); */
 }
 
 .community-post-list {
