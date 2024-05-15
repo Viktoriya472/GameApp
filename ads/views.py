@@ -38,7 +38,7 @@ class AdsDetail(FormMixin, DetailView):
             ad = self.get_object()
             form.instance.ad = ad
             form.instance.user = User.objects.get(username=request.user)
-            form.save()    
+            form.save()
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
