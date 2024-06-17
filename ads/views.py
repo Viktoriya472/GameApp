@@ -3,13 +3,24 @@ from django.views.generic import ListView, DetailView, CreateView, \
 from ads.models import Ad, Comment
 from ads.forms import AdForm, CommentForm
 from django.contrib.auth.models import User
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import FormMixin
 from django.http import HttpResponse
 from django.template import Context, Template
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
 # from django.contrib.postgres.search import SearchVector,SearchQuery, \
 # SearchRank
+
+
+def LikeView(request, pk):
+    comment = get_object_or_404(Comment, id=request.POST.get('comment_id'))
+    if comment.likes.filter(id=request.user.id).exists():
+        comment.likes.remove(request.user)
+    else:
+        comment.likes.add(request.user)
+    return HttpResponseRedirect(reverse('ad_detail', args=[str(pk)]))
 
 
 class AdsList(ListView):
@@ -81,7 +92,7 @@ class Comments(TemplateView):
     template_name = "ads/comments.html"
     context_object_name = "comments"
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comments'] = Comment.objects.filter(
             ad__user=self.request.user, active=False)

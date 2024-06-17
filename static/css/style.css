@@ -1159,9 +1159,19 @@ text-decoration: none;
 	border-radius: 50%;
 	float: left;
 }
+.comment-list .comment .comment-likes {
+	width: 50px;
+	height: 50px;
+}
+
+.comment-list .comment .comment-likes button {
+background-color: transparent;
+border-width: 0px;
+}
 
 .comment-list .comment .comment-content {
 	padding-left: 100px;
+	padding-right: 50px;
 }
 
 .comment-list .comment .comment-content h5 {
@@ -1180,6 +1190,7 @@ text-decoration: none;
 	font-size: 12px;
 	margin-bottom: 5px;
 }
+
 
 .comment-list .comment .comment-content span {
 	color: #ffb320 !important;

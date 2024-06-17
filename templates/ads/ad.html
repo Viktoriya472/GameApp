@@ -56,6 +56,18 @@
                                     <div class="comment">   
                                         <div class="comment-warp">
                                             <div class="comment-avator set-bg" data-setbg="{{comment.user.profile.avatar.url}}"></div>
+                                                <div class="comment-likes float-right">
+                                                    {% if user.is_authenticated %}
+                                                        <form action="{% url 'like_comment' ad.pk %}" method='POST'>
+                                                            {% csrf_token %}
+                                                            {% if user in comment.likes.all %}
+                                                                <button type="submit" name="comment_id", value="{{comment.id}}"><i class="fa-solid fa-heart" style="color: #ffb320;"></i></button><span class="text-white"> {{comment.total_likes}}</span>
+                                                            {% else %}
+                                                                <button type="submit" name="comment_id", value="{{comment.id}}"><i class="fa-regular fa-heart" style="color: #ffb320;"></i></button><span class="text-white"> {{comment.total_likes}}</span>
+                                                            {% endif %}
+                                                            </form>
+                                                    {% endif %}
+                                                </div>
                                         <div class="comment-content">        
                                             <h5>{{comment.user}}</h5>
                                             <p>{{comment.text}}</p>
