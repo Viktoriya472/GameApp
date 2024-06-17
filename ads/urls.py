@@ -1,6 +1,6 @@
 from django.urls import path
 from ads.views import AdsList, AdsDetail, AsdCreate, AdsUpdate, AdsDelete, \
-    Comments, updateComment
+    Comments, updateComment, LikeView
 from ads.views import Search
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
     path('update_comment_active/<int:pk>/<slug:type>',
          updateComment, name="update_comment"),
     path('search/', Search.as_view(), name='ad_search'),
+    path('like/<int:pk>/', LikeView, name='like_comment'),
 ]

@@ -547,18 +547,6 @@ text-decoration: none;
 
 .recent-game-item .news-detail{
 	text-decoration: none;
-	color:inherit;
-	position: relative;
-	left: 0;
-	transition-duration: 0.1s;
-}
-
-.recent-game-item  .news-detail:hover{
-	text-decoration: none;
-	color:inherit;
-	left: 1px;
-	transition-duration: 0.1s;
-	
 }
 
 .recent-game-item .rgi-thumb {
@@ -1171,9 +1159,19 @@ text-decoration: none;
 	border-radius: 50%;
 	float: left;
 }
+.comment-list .comment .comment-likes {
+	width: 50px;
+	height: 50px;
+}
+
+.comment-list .comment .comment-likes button {
+background-color: transparent;
+border-width: 0px;
+}
 
 .comment-list .comment .comment-content {
 	padding-left: 100px;
+	padding-right: 50px;
 }
 
 .comment-list .comment .comment-content h5 {
@@ -1192,6 +1190,7 @@ text-decoration: none;
 	font-size: 12px;
 	margin-bottom: 5px;
 }
+
 
 .comment-list .comment .comment-content span {
 	color: #ffb320 !important;
@@ -1275,10 +1274,16 @@ text-decoration: none;
 	border: 1px solid #878787;
 	background: #1f2225;
 }
+
 .community-post-list ul li{
 	border: inherit;
 	padding: inherit;
 }
+
+.community-post-list li a{
+text-decoration: none;
+}
+
 .community-post-list ol li{
 	border: inherit;
 	padding: inherit;
@@ -1293,22 +1298,6 @@ text-decoration: none;
 
 .community-post-list .community-post .post-content {
 	padding-left: 100px;
-}
-
-.community-post-list .community-post .post-content .ad_detail {
-	text-decoration: none;
-	color: inherit;
-	display: inline-block;
-	left: 0;
-	position: relative;
-	transition-duration: 0.5s;
-}
-
-.community-post-list .community-post .post-content .ad_detail:hover {
-	text-decoration: none;
-	color: inherit;
-	left: 3px;
-	transition-duration: 0.5s;
 }
 
 .community-post-list .community-post .post-content h4{
