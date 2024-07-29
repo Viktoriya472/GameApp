@@ -5,6 +5,8 @@ gameApp/settings/dev.py
 gameApp/settings/prod.py
 config
 logs
+staticfiles/
+media/
 
 __pycache__/
-*/__pycache__/
+*/__pycache__/ 
