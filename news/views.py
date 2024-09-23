@@ -4,6 +4,7 @@ from news.models import News
 from news.forms import NewsCreateForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 
 class NewsList(ListView):
@@ -46,3 +47,21 @@ class NewsDelete(PermissionRequiredMixin, DeleteView):
     queryset = News.objects.all()
     permission_required = "news.view_news"
     success_url = reverse_lazy("news")
+
+
+class Search(ListView):
+    template_name = "news/news.html"
+    context_object_name = "all_news"
+    ordering = ["-id"]
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        return News.objects.filter(Q(header__icontains=query) |
+                                   Q(text__icontains=query) |
+                                   Q(tags__name__icontains=query) |
+                                   Q(category__name__icontains=query))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['q'] = self.request.GET.get("q")
+        return context

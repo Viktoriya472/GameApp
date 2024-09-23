@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 
 class News(models.Model):
@@ -12,6 +13,7 @@ class News(models.Model):
     category = models.ManyToManyField("Category",
                                       through="NewsCategory",
                                       verbose_name="Категория")
+    tags = TaggableManager()
 
     class Meta:
         verbose_name = "Новость"
