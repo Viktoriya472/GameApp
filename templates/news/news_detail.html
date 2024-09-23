@@ -15,10 +15,11 @@
         </div>
     </div>
 </section>
+
 <!-- Page info section -->
 <section class="page-section single-blog-page spad">
     <div class="container">
-        <div class="d-flex justify-content-center">
+        <div class="row">
             <div class="col-lg-8">
                 <div class="d-flex text-secondary pb-2">
                     {% for news_category in news.category.all %}
@@ -34,6 +35,28 @@
                     <p class="text-black">{{ news.text }}</p>
                 </div>
             </div>
+            <!-- sidebar -->
+            <div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
+                <div class="widget-item">
+                    <h4 class="widget-title text-black">Похожие новости</h4>
+                        <div class="latest-blog">
+                            {% for news_tags in similar_news %}
+                            <a class="news-detail text-decoration-none" href="{% url 'news_detail' news_tags.id %}">
+                                <div class="lb-item">
+                                    <div class="lb-thumb set-bg" data-setbg="{{news_tags.image.url}}"></div>
+                                        <div class="lb-content">
+                                            <div class="lb-date">{{news_tags.datetime}}</div>
+                                            <p class="text-black">{{news_tags.header}}</p>
+                                            <p class="lb-author">{{news_tags.user}}</p>
+                                        </div>
+                                    
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
+                </div>
+            </div>
+            <!-- sidebar -->
         </div>
     </div>
 </section>

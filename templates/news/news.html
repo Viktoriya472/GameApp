@@ -18,6 +18,14 @@
 <!-- Page info section -->
 <section class="page-section recent-game-page spad">
     <div class="container">
+        <!-- widget -->
+        <div class="widget-item">
+            <form action="{% url 'news_search' %}" method="get" class="search-widget">
+                <input type="search" placeholder="Поиск" name="q">
+                <button><i class="fa fa-search" type="submit"></i></button>
+            </form>
+        </div>
+        <!-- widget -->
         <div class="d-flex flex-row justify-content-center flex-wrap"> 
             {% for news in all_news %}
                 <div class="col-md-6">
