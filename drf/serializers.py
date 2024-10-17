@@ -34,26 +34,28 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
-        exclude = ['tags']
 
 
-class NewsCategory(serializers.ModelSerializer):
+class NewsCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
 
 class GameSerialiser(serializers.ModelSerializer):
-    model = Game
-    fields = '__all__'
+    class Meta:
+        model = Game
+        fields = '__all__'
 
 
 class AdSerialiser(serializers.ModelSerializer):
-    model = Ad
-    fields = '__all__'
+    class Meta:
+        model = Ad
+        fields = '__all__'
 
 
 class CommentSerialiser(serializers.ModelSerializer):
-    model = Comment
-    fields = '__all__'
-    exclude = ['active']
+    class Meta:
+        model = Comment
+        # fields = '__all__'
+        exclude = ['active']

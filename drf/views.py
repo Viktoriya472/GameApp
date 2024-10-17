@@ -1,79 +1,94 @@
-from django.shortcuts import render
-from django.http import Http404
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.views import APIView
+from rest_framework import mixins, generics
 from django.contrib.auth.models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, NewsSerializer, NewsCategorySerializer, AdSerialiser, GameSerialiser, CommentSerialiser
+from ads.models import Ad, Game, Comment
+from news.models import News, Category
 
 
-# @api_view(['GET', 'POST'])
-# def user_list(request, format=None):
-#     if request.method == 'GET':
-#         user = User.objects.all().order_by("-id")
-#         serializer = UserSerializer(user, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-#     elif request.method == 'POST':
-#         data = JSONParser().parse(request)
-#         serializer = UserSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.errors, status=201)
-#         return JsonResponse(serializer.errors, status=400)
+# class UserList(mixins.ListModelMixin,
+#                mixins.CreateModelMixin,
+#                generics.GenericAPIView):
+#     queryset = User.objects.all().order_by('-id')
+#     serializer_class = UserSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
 
 
-# @api_view(['GET', 'PUT', 'DELETE'])
-# def user_detail(request, pk, format=None):
-#     try:
-#         user = User.objects.get(pk=pk)
-#     except User.DoesNotExist:
-#         return HttpResponse(status=404)
-#     if request.method == 'GET':
-#         serializer = UserSerializer(user)
-#         return JsonResponse(serializer.data)
+# class UserDetail(mixins.RetrieveModelMixin,
+#                  mixins.UpdateModelMixin,
+#                  mixins.DestroyModelMixin,
+#                  generics.GenericAPIView):
+#     queryset = User.objects.all().order_by('-id')
+#     serializer_class = UserSerializer
 
-#     elif request.method == 'PUT':
-#         data = JSONParser().parse(request)
-#         serializer = UserSerializer(user, data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return JsonResponse(serializer.data)
-#         return JsonResponse(serializer.errors, status=400)
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)      
 
-#     elif request.method == 'DELETE':
-#         user.delete()
-#         return HttpResponse(status=204)
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all().order_by('-id')
+    serializer_class = UserSerializer
 
 
-class UserList(APIView):
-    def get(self, request, format=None):
-        user = User.objects.all().order_by("-id")
-        serializer = UserSerializer(user, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, format=None):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all().order_by('-id')
+    serializer_class = UserSerializer
 
 
-class UserDetail(APIView):
-    def get(self, request, pk, format=None):
-        user = User.objects.get(pk=pk)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
+class NewsList(generics.ListCreateAPIView):
+    queryset = News.objects.all().order_by('-id')
+    serializer_class = NewsSerializer
 
-    def put(self, request, pk, format=None):
-        user = self.get_object(pk)
-        serializer = UserSerializer(user, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        user = self.get_object(pk)
-        user.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+class NewsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = News.objects.all().order_by('-id')
+    serializer_class = NewsSerializer
+
+
+class NewsCategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all().order_by('-id')
+    serializer_class = NewsCategorySerializer
+
+
+class NewsCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all().order_by('-id')
+    serializer_class = NewsCategorySerializer
+
+
+class GameList(generics.ListCreateAPIView):
+    queryset = Game.objects.all().order_by('-id')
+    serializer_class = GameSerialiser
+
+
+class GameDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Game.objects.all().order_by('-id')
+    serializer_class = GameSerialiser
+
+
+class AdList(generics.ListCreateAPIView):
+    queryset = Ad.objects.all().order_by('-id')
+    serializer_class = AdSerialiser
+
+
+class AdDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Ad.objects.all().order_by('-id')
+    serializer_class = AdSerialiser
+
+
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all().order_by('-id')
+    serializer_class = CommentSerialiser
+
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects.all().order_by('-id')
+    serializer_class = CommentSerialiser
