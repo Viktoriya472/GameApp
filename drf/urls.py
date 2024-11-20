@@ -1,5 +1,7 @@
 from django.urls import path
-from drf.views import UserList, UserDetail, NewsList, NewsDetail, NewsCategoryList, NewsCategoryDetail, GameList, GameDetail, AdList, AdDetail, CommentList, CommentDetail
+from drf.views import UserList, UserDetail, NewsList, NewsDetail, \
+    NewsCategoryList, NewsCategoryDetail, GameList, GameDetail, AdList, \
+    AdDetail, CommentList, CommentDetail
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
