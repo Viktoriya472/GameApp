@@ -21,7 +21,7 @@
     <body>
         <header class="header-section">
             <div class="container">
-                <a class="site-logo" href="#"><img src="{% static 'img/icons/logo.png' %}" height="30" alt="logo"></a>
+                <a class="site-logo" href="{% url 'news' %}"><img src="{% static 'img/icons/logo.png' %}" height="30" alt="logo"></a>
                     <div class="user-panel">
                         {% if user.is_authenticated %}
                             <a href="{% url 'account_logout' %}">Выйти</a>

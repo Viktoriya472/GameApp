@@ -1,7 +1,5 @@
 /.env
 media
-db.sqlite3
-gameApp/settings/dev.py
 gameApp/settings/prod.py
 config
 logs
