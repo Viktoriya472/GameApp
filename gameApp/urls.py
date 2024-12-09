@@ -24,7 +24,6 @@ urlpatterns = [
     path('', include('news.urls')),
     path('ads/', include('ads.urls')),
     path('main/', include('main.urls')),
-    path('drf/', include('drf.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('accounts/', include('allauth.urls')),
     path('__debug__/', include('debug_toolbar.urls')),

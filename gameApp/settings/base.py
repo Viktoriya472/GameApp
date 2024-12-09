@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'main.apps.MainConfig',
     'ads.apps.AdsConfig',
-    'drf.apps.DrfConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'ckeditor',

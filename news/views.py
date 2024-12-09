@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.db.models import Count
-from django.core.cache import cache
+# from django.core.cache import cache
 
 
 class NewsList(ListView):
@@ -15,13 +15,13 @@ class NewsList(ListView):
     context_object_name = "all_news"
     ordering = ["-id"]
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        news_cache = cache.get('all_news')
-        if not news_cache:
-            news = News.objects.all()
-            cache.set('all_news', news)
-        return context
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     news_cache = cache.get('all_news')
+    #     if not news_cache:
+    #         news = News.objects.all()
+    #         cache.set('all_news', news)
+    #     return context
 
 
 class NewsDetail(DetailView):
