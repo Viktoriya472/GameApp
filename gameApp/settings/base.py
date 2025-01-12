@@ -175,7 +175,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # celery, celery-beat  https://docs.celeryq.dev/en/stable/getting-started/first-steps-with-celery.html#redis
-CELERY_BROKER_URL = 'redis://localhost:6379' 
+CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 # cache
@@ -185,12 +185,12 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 #         'LOCATION': '127.0.0.1:11211',
 #     }
 # }
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379',
+#     }
+# }
 
 # django-ckeditor  https://django-ckeditor.readthedocs.io/en/latest/
 CKEDITOR_UPLOAD_PATH = 'uploads/'
