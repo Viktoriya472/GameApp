@@ -177,6 +177,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # celery, celery-beat  https://docs.celeryq.dev/en/stable/getting-started/first-steps-with-celery.html#redis
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_TIMEZONE = 'Europe/Moscow'
 
 # cache
 # CACHES = {

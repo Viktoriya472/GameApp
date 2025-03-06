@@ -10,6 +10,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'send_newsletter': {
         'task': 'main.tasks.send_newsletter',
-        'schedule': crontab(day_of_week='1', hour='10', minute='0')
+        'schedule': crontab(day_of_week='monday', hour='9', minute='00')
     }
 }

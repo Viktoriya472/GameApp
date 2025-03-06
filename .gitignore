@@ -1,10 +1,10 @@
-/.env
-media
+# /.env
+# /media
+
 gameApp/settings/prod.py
 config
 logs
 staticfiles/
-media/
 
 __pycache__/
 */__pycache__/ 

@@ -45,10 +45,9 @@ class ContactView(CreateView):
 
     def form_valid(self, form):
         contact = form.save(commit=False)
-        try:
-            if contact.email not in Contact.objects.all():
-                contact.save()
-                newsletter_subscription(contact.email)
-        except:
+        if contact.email not in Contact.objects.values_list("email",flat=True):
+            contact.save()
+            newsletter_subscription(contact.email)
+        else:
             newsletter_subscription_error(contact.email)
         return HttpResponseRedirect(reverse('news'))
