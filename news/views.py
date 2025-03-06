@@ -78,7 +78,7 @@ class Search(ListView):
         return News.objects.filter(Q(header__icontains=query) |
                                    Q(text__icontains=query) |
                                    Q(tags__name__icontains=query) |
-                                   Q(category__name__icontains=query))
+                                   Q(category__name__icontains=query)).distinct()
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

@@ -27,7 +27,7 @@ class AdsList(ListView):
     model = Ad
     template_name = "ads/ads.html"
     context_object_name = "ads"
-    ordering = ["-id"]
+    ordering = ["-datetime"]
     paginate_by = 7
 
 
