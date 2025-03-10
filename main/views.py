@@ -45,7 +45,7 @@ class ContactView(CreateView):
 
     def form_valid(self, form):
         contact = form.save(commit=False)
-        if contact.email not in Contact.objects.values_list("email",flat=True):
+        if contact.email not in Contact.objects.values_list('email',flat=True):
             contact.save()
             newsletter_subscription(contact.email)
         else:

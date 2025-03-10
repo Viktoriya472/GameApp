@@ -3,11 +3,11 @@ from news.views import NewsList, NewsDetail, NewsCreate, NewsUpdate, NewsDelete,
 
 
 urlpatterns = [
-    path('news/', NewsList.as_view(), name='news'),
-    path('<int:pk>/', NewsDetail.as_view(), name='news_detail'),
-    path('create/', NewsCreate.as_view(), name='news_create'),
-    path('<int:pk>/update/', NewsUpdate.as_view(), name='news_update'),
-    path('<int:pk>/delete/', NewsDelete.as_view(), name='news_delete'),
-    path('search/', Search.as_view(), name='news_search'),
+    path('', NewsList.as_view(), name='news'),
+    path('news/<int:pk>/', NewsDetail.as_view(), name='news_detail'),
+    path('news/create/', NewsCreate.as_view(), name='news_create'),
+    path('news/<int:pk>/update/', NewsUpdate.as_view(), name='news_update'),
+    path('news/<int:pk>/delete/', NewsDelete.as_view(), name='news_delete'),
+    path('news/search/', Search.as_view(), name='news_search'),
 
 ]

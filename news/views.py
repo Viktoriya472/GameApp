@@ -17,10 +17,10 @@ class NewsList(ListView):
 
     # def get_context_data(self, *args, **kwargs):
     #     context = super().get_context_data(*args, **kwargs)
-    #     news_cache = cache.get('all_news')
+    #     news_cache = cache.get("all_news")
     #     if not news_cache:
     #         news = News.objects.all()
-    #         cache.set('all_news', news)
+    #         cache.set("all_news", news)
     #     return context
 
 
@@ -31,11 +31,11 @@ class NewsDetail(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        news_tags_ids = News.objects.values_list('id', flat=True)
+        news_tags_ids = News.objects.values_list("id", flat=True)
         similar_news = News.objects.filter(tags__in=news_tags_ids
                                            ).exclude(id=self.get_object().id)
-        context['similar_news'] = similar_news.annotate(
-            same_tags=Count('tags')).order_by('-same_tags', '-id')[:4]
+        context["similar_news"] = similar_news.annotate(
+            same_tags=Count("tags")).order_by("-same_tags", "-id")[:4]
         return context
 
 
@@ -82,5 +82,5 @@ class Search(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['q'] = self.request.GET.get("q")
+        context["q"] = self.request.GET.get("q")
         return context

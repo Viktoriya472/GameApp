@@ -25,16 +25,16 @@ def LikeView(request, pk):
 
 class AdsList(ListView):
     model = Ad
-    template_name = "ads/ads.html"
-    context_object_name = "ads"
-    ordering = ["-datetime"]
+    template_name = 'ads/ads.html'
+    context_object_name = 'ads'
+    ordering = ['-datetime']
     paginate_by = 7
 
 
 class AdsDetail(FormMixin, DetailView):
     model = Ad
-    template_name = "ads/ad.html"
-    context_object_name = "ad"
+    template_name = 'ads/ad.html'
+    context_object_name = 'ad'
     form_class = CommentForm
 
     def get_context_data(self, **kwargs):
@@ -60,9 +60,9 @@ class AdsDetail(FormMixin, DetailView):
 
 class AsdCreate(CreateView):
     model = Ad
-    template_name = "ads/ad_create.html"
+    template_name = 'ads/ad_create.html'
     form_class = AdForm
-    success_url = reverse_lazy("ads")
+    success_url = reverse_lazy('ads')
 
     def post(self, request, *args, **kwargs):
         form = AdForm(request.POST)
@@ -76,21 +76,21 @@ class AsdCreate(CreateView):
 
 class AdsUpdate(UpdateView):
     model = Ad
-    template_name = "ads/ad_create.html"
+    template_name = 'ads/ad_create.html'
     form_class = AdForm
-    success_url = reverse_lazy("ads")
+    success_url = reverse_lazy('ads')
 
 
 class AdsDelete(DeleteView):
-    template_name = "ads/ad_delete.html"
+    template_name = 'ads/ad_delete.html'
     queryset = Ad.objects.all()
-    success_url = reverse_lazy("ads")
+    success_url = reverse_lazy('ads')
 
 
 class Comments(TemplateView):
     model = Comment
-    template_name = "ads/comments.html"
-    context_object_name = "comments"
+    template_name = 'ads/comments.html'
+    context_object_name = 'comments'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -101,38 +101,38 @@ class Comments(TemplateView):
 
 def updateComment(request, pk, type):
     comment = Comment.objects.get(pk=pk)
-    if type == "public":
+    if type == 'public':
         comment.active = True
         comment.save()
         template = Template('''<div class="post_content">
                             <p>Комментарий опубликован.</p></div>''')
         context = Context({'comment': comment})
         return HttpResponse(template.render(context))
-    elif type == "delete":
+    elif type == 'delete':
         comment.delete()
         template = Template('''<div class="post_content">
                             <p>Комментарий удален.</p></div>''')
         context = Context({'comment': comment})
         return HttpResponse(template.render(context))
-    return reverse_lazy("comments")
+    return reverse_lazy('comments')
 
 
 class Search(ListView):
-    template_name = "ads/ads.html"
-    context_object_name = "ads"
-    ordering = ["-id"]
+    template_name = 'ads/ads.html'
+    context_object_name = 'ads'
+    ordering = ['-id']
 
     def get_queryset(self):
-        query = self.request.GET.get("q")
-        # search_vector = SearchVector("title","content_upload","game__name")
+        query = self.request.GET.get('q')
+        # search_vector = SearchVector('title','content_upload','game__name')
         # search_query = SearchQuery(query)
         # return (Ad.objects.annotate(search=search_vector, \
-        # rank=SearchRank(search_vector,search_query)).filter(search=search_query).order_by("-rank"))
+        # rank=SearchRank(search_vector,search_query)).filter(search=search_query).order_by('-rank'))
         return Ad.objects.filter(Q(title__icontains=query) |
                                  Q(content_upload__icontains=query) |
                                  Q(game__name__icontains=query))
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['q'] = self.request.GET.get("q")
+        context['q'] = self.request.GET.get('q')
         return context

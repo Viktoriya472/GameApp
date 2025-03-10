@@ -7,4 +7,4 @@ register = template.Library()
 @register.inclusion_tag('main/contact/tags/form.html')
 def contact_form():
     form = ContactForm
-    return {"contact_form": form}
+    return {'contact_form': form}

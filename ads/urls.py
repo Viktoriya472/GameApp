@@ -12,6 +12,6 @@ urlpatterns = [
     path('comments/', Comments.as_view(), name='comments'),
     path('update_comment_active/<int:pk>/<slug:type>',
          updateComment, name="update_comment"),
-    path('search/', Search.as_view(), name='ad_search'),
-    path('like/<int:pk>/', LikeView, name='like_comment'),
+    path('search/', Search.as_view(), name="ad_search"),
+    path('like/<int:pk>/', LikeView, name="like_comment"),
 ]

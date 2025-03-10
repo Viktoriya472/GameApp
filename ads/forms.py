@@ -6,7 +6,7 @@ from django import forms
 class AdForm(ModelForm):
     class Meta:
         model = Ad
-        fields = ("title", "content_upload", "game")
+        fields = ('title', 'content_upload', 'game')
 
 
 class CommentForm(ModelForm):

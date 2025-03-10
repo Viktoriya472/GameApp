@@ -31,7 +31,7 @@ class NewsTests(TestCase):
         self.assertEqual(self.news.text, "Test text")
         self.assertEqual(self.news.image, "test.png")
         self.assertEqual(self.news.user.username, "testuser")
-        list_category_names = self.news.category.values_list('name', flat=True)
+        list_category_names = self.news.category.values_list("name", flat=True)
         self.assertEqual(*(list_category_names), "Кино")
 
     def test_news_listview(self):
