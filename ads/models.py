@@ -39,7 +39,8 @@ class Comment(models.Model):
                            verbose_name="Объявление")
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              verbose_name="Пользователь")
-    likes = models.ManyToManyField(User, related_name='comments_liked')
+    likes = models.ManyToManyField(User, related_name='comments_liked',
+                                   blank=True)
 
     def __str__(self):
         return f'{self.text}'

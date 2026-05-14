@@ -17,3 +17,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'gameapp',
+#         'USER': os.getenv('USER_DATABASE'),
+#         'PASSWORD': os.getenv('PASSWORD_DATABASE'),
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+#  }
