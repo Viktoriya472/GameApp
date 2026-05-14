@@ -122,7 +122,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/news/'
+LOGIN_REDIRECT_URL = '/'
 
 # django-allauth  https://docs.allauth.org/en/latest/index.html
 ACCOUNT_EMAIL_REQUIRED = True
